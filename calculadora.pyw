@@ -10,10 +10,12 @@ global variableC
 variableC=""
 global Reloj
 Reloj=""
-global cuenta
-cuenta=0
+S=0
 global cuenta2
 cuenta2=0
+M=0     #minutos 
+H=0     #horas
+D=0     #dias
 
 def sumar():
     global cadena
@@ -82,28 +84,43 @@ def dividir():
            # etiqueta3.config(border=3,relief="solid",fg="black",width=12,height=1,bg="red")
             cadena=""
             cadena2=""
-M=0
-D="D"
+
+
 def actualizar():
      global Reloj
-     global cuenta
+     global S
      global cuenta2
      global M
      global D
-
-
+     global H
      #Ron
      if (Reloj==1):
-          cuenta=cuenta+1+cuenta2
+          S=S+1+cuenta2
           cuenta2=0
-          if(cuenta>=60):
-            M=M+1
-            cuenta=0
-            palabra.set(f"D:H:{M}:{cuenta}")
-            etiqueta4.after(250,actualizar)
+          if(S>=60):
+               if(M==59):
+                 if(H==23):
+                    S=0
+                    M=0
+                    H=0
+                    D=D+1
+                    palabra.set(f"{D}:{H}:{M}:{S}")
+                    etiqueta4.after(1000,actualizar)
+                 else:
+                    S=0
+                    M=0
+                    H=H+1
+                    palabra.set(f"{D}:{H}:{M}:{S}")
+                    etiqueta4.after(1000,actualizar)
+                 
+               else:
+                 M=M+1
+                 S=0
+                 palabra.set(f"{D}:{H}:{M}:{S}")
+                 etiqueta4.after(1000,actualizar)
           else:
-           palabra.set(f"D:H:{M}:{cuenta}")
-           etiqueta4.after(250,actualizar)
+           palabra.set(f"{D}:{H}:{M}:{S}")
+           etiqueta4.after(1000,actualizar)
      #Rpausa
      elif(Reloj==2):
         #  cuenta2=0
