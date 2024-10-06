@@ -82,27 +82,39 @@ def dividir():
            # etiqueta3.config(border=3,relief="solid",fg="black",width=12,height=1,bg="red")
             cadena=""
             cadena2=""
-
-
+M=0
+D="D"
 def actualizar():
      global Reloj
      global cuenta
      global cuenta2
+     global M
+     global D
+
+
+     #Ron
      if (Reloj==1):
           cuenta=cuenta+1+cuenta2
           cuenta2=0
-          palabra.set(cuenta)
-          etiqueta4.after(1000,actualizar)
-   
+          if(cuenta>=60):
+            M=M+1
+            cuenta=0
+            palabra.set(f"D:H:{M}:{cuenta}")
+            etiqueta4.after(250,actualizar)
+          else:
+           palabra.set(f"D:H:{M}:{cuenta}")
+           etiqueta4.after(250,actualizar)
+     #Rpausa
      elif(Reloj==2):
         #  cuenta2=0
           palabra.set(f"Pausa ({cuenta})")
           etiqueta4.after(1,actualizar) 
-
+     #Rparo
      elif(Reloj==0):
            cuenta2=cuenta2+1
            palabra.set(f"Cont.. ({cuenta})")
            etiqueta4.after(1000,actualizar) 
+     #Rborrar      
      elif(Reloj==3):
            cuenta2=0
            cuenta=0
@@ -111,6 +123,7 @@ def actualizar():
      else:
        etiqueta4.after(10,actualizar) 
            
+
 def numero(a):
     global Reloj
     global cadena
@@ -267,7 +280,7 @@ labelEspacio.grid(row=4)
 #############
 actualizar()
 
-#root.iconbitmap("16-client-cat_icon-icons.com_76692.ico") #debe estar en la misma carpeta
+root.iconbitmap("cat.ico") #debe estar en la misma carpeta
 #reloj=Label(root,textvariable=palabra)
 #########################################################
 
