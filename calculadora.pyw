@@ -41,13 +41,11 @@ def restar():
     cadena=float(variableA.get())
     variableA.set(float(cadena2)-float(cadena))
     valorDeA.config(bg="silver") 
-  #  etiqueta3.config(border=3,relief="solid",fg="black",width=12,height=1,bg="white")
     cadena=""
     cadena2=""
    except:
             variableA.set("no es un numero")
             valorDeA.config(bg="red") 
-         #   etiqueta3.config(border=3,relief="solid",fg="black",width=12,height=1,bg="red")
             cadena=""
             cadena2=""
 
@@ -59,13 +57,11 @@ def multiplicar():
     cadena=float(variableA.get())
     variableA.set(float(cadena2)*float(cadena))
     valorDeA.config(bg="silver") 
-   # etiqueta3.config(border=3,relief="solid",fg="black",width=12,height=1,bg="white")
     cadena=""
     cadena2=""
    except:
             variableA.set("no es un numero")
-            valorDeA.config(bg="red") 
-        #    etiqueta3.config(border=3,relief="solid",fg="black",width=12,height=1,bg="red")
+            valorDeA.config(bg="red")     
             cadena=""
             cadena2=""
     
@@ -81,7 +77,6 @@ def dividir():
    except:
             variableA.set("no es un numero")
             valorDeA.config(bg="red") 
-           # etiqueta3.config(border=3,relief="solid",fg="black",width=12,height=1,bg="red")
             cadena=""
             cadena2=""
 
@@ -215,8 +210,6 @@ def numero(a):
          Reloj=3
          a=""
              
-#def funcionreloj(relojvariable):
- #    if relojvariable==0
 root = Tk()
 variableA=StringVar()
 variableB=StringVar()
@@ -267,11 +260,11 @@ etiquetaCronometro.config(bg="lightblue",width=10,height=10)
 etiquetaCronometro.grid(row=0,column=1)
 
 etiqueta4= Label(etiquetaCronometro,textvariable=palabra)
-etiqueta4.config(border=3,relief="solid",fg="black",width=12,height=1,bg="silver",cursor="gobbler")
+etiqueta4.config(border=3,relief="solid",fg="black",width=12,height=1,bg="silver",cursor="exchange")
 etiqueta4.grid(row=0,column=0)
 
 etiquetaCbotones=Label(etiquetaCronometro)
-etiquetaCbotones.config(bg="lightblue")
+etiquetaCbotones.config(bg="lightblue",cursor="hand2")
 etiquetaCbotones.grid(row=1,column=0)
 botonCronometro= Button(etiquetaCbotones,text="   Empezar   ")
 botonCronometro.config(command=lambda:numero("Ron"))
