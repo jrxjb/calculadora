@@ -16,7 +16,8 @@ cuenta2=0
 M=0     #minutos 
 H=0     #horas
 D=0     #dias
-
+M2=0   # minutos restantes es pués se una pausa
+H2=0
 def sumar():
     global cadena
     global cadena2 
@@ -80,6 +81,15 @@ def dividir():
             cadena=""
             cadena2=""
 
+def calculoTiempoRestante():
+    global cuenta2
+    global S
+    divisor = 60
+    global M2
+    M2, residuo = divmod(cuenta2, divisor)
+    cuenta2=cuenta2+residuo
+    print(f"S:{cuenta2}, M2:{M2}")
+    actualizar()
 
 def actualizar():
      global Reloj
@@ -88,20 +98,42 @@ def actualizar():
      global M
      global D
      global H
+     global M2
+     global H2
+     divisor = 60
      #Ron
+
      if (Reloj==1):
           S=S+1+cuenta2
           cuenta2=0
-          if(S>=60):
+          M=M+M2
+          M2=0
+          H=H+H2
+          H2=0
+          if(S>60):
+               M2, residuo = divmod(S, divisor)
+               S=residuo
+               print(f"S:{S}, M2:{M2}")
+              # palabra.set(f"{D}:{H}:{M}:{S}")
+               etiqueta4.after(1000,actualizar)
+          if(M>=60):
+               H2  , residuo = divmod(M, divisor)
+               M2=residuo
+               M=0
+               print(f"H2:{H2}, M2:{M2},S:{S}") 
+               #palabra.set(f"{D}:{H}:{M}:{S}")
+               etiqueta4.after(1000,actualizar)
+                   
+          elif(S==60):
                if(M==59):
-                 if(H==23):
+                  if(H==23):
                     S=0
                     M=0
                     H=0
                     D=D+1
                     palabra.set(f"{D}:{H}:{M}:{S}")
                     etiqueta4.after(1000,actualizar)
-                 else:
+                  else:
                     S=0
                     M=0
                     H=H+1
@@ -113,23 +145,23 @@ def actualizar():
                  S=0
                  palabra.set(f"{D}:{H}:{M}:{S}")
                  etiqueta4.after(1000,actualizar)
+
           else:
            palabra.set(f"{D}:{H}:{M}:{S}")
            etiqueta4.after(1000,actualizar)
      #Rpausa
-     elif(Reloj==2):
-        #  cuenta2=0
-          palabra.set(f"Pausa ({cuenta})")
+     elif(Reloj==0):
+          palabra.set(f"Paro ({S})")
           etiqueta4.after(1,actualizar) 
      #Rparo
-     elif(Reloj==0):
+     elif(Reloj==2):
            cuenta2=cuenta2+1
-           palabra.set(f"Cont.. ({cuenta})")
+           palabra.set(f"Cont.. ({S})")
            etiqueta4.after(1000,actualizar) 
      #Rborrar      
      elif(Reloj==3):
            cuenta2=0
-           cuenta=0
+           S=0
            palabra.set("")
            etiqueta4.after(1,actualizar) 
      else:
