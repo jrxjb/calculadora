@@ -1,6 +1,5 @@
 from tkinter import * 
 import time
-#from tkinter import messagebox as Messagebox
 
 global cadena
 cadena=""
@@ -18,6 +17,7 @@ H=0     #horas
 D=0     #dias
 M2=0   # minutos restantes es pués se una pausa
 H2=0
+D2=0
 def sumar():
     global cadena
     global cadena2 
@@ -26,7 +26,6 @@ def sumar():
         cadena=float(variableA.get())
         variableA.set(float(cadena2)+float(cadena))
         valorDeA.config(bg="silver") 
-    #    valorDeA.config(font=("verdana,15"),bg="blue",width=8,cursor="pencil",relief="solid",border=3)
         cadena=""
         cadena2=""
     except:
@@ -100,7 +99,9 @@ def actualizar():
      global H
      global M2
      global H2
+     global D2
      divisor = 60
+     divisorDias= 24
      #Ron
 
      if (Reloj==1):
@@ -110,6 +111,8 @@ def actualizar():
           M2=0
           H=H+H2
           H2=0
+          D=D+D2
+          D2=0
           if(S>60):
                M2, residuo = divmod(S, divisor)
                S=residuo
@@ -123,7 +126,11 @@ def actualizar():
                print(f"H2:{H2}, M2:{M2},S:{S}") 
                #palabra.set(f"{D}:{H}:{M}:{S}")
                etiqueta4.after(1000,actualizar)
-                   
+          if(H>=24):
+               D2  , residuo = divmod(H, divisorDias)
+               H=0
+               H2=residuo
+               etiqueta4.after(1000,actualizar)
           elif(S==60):
                if(M==59):
                   if(H==23):
@@ -149,14 +156,14 @@ def actualizar():
           else:
            palabra.set(f"{D}:{H}:{M}:{S}")
            etiqueta4.after(1000,actualizar)
-     #Rpausa
-     elif(Reloj==0):
-          palabra.set(f"Paro ({S})")
-          etiqueta4.after(1,actualizar) 
      #Rparo
+     elif(Reloj==0):
+          palabra.set(f"{D}:{H}:{M}:{S}")
+          etiqueta4.after(1,actualizar) 
+     #Rpausa
      elif(Reloj==2):
            cuenta2=cuenta2+1
-           palabra.set(f"Cont.. ({S})")
+           palabra.set(f"Cont.. ({D}:{H}:{M}:{S})")
            etiqueta4.after(1000,actualizar) 
      #Rborrar      
      elif(Reloj==3):
