@@ -130,19 +130,19 @@ def actualizar():
                S=residuo
                print(f"S:{S}, M2:{M2}")
               # palabra.set(f"{D}:{H}:{M}:{S}")
-               etiqueta4.after(1000,actualizar)
-          if(M>=60):
+               etiqueta4.after(500,actualizar)
+          elif(M>=60):
                H2  , residuo = divmod(M, divisor)
                M2=residuo
                M=0
                print(f"H2:{H2}, M2:{M2},S:{S}") 
                #palabra.set(f"{D}:{H}:{M}:{S}")
-               etiqueta4.after(1000,actualizar)
-          if(H>=24):
+               etiqueta4.after(500,actualizar)
+          elif(H>=24):
                D2  , residuo = divmod(H, divisorDias)
                H=0
                H2=residuo
-               etiqueta4.after(1000,actualizar)
+               etiqueta4.after(500,actualizar)
           elif(S==60):
                if(M==59):
                   if(H==23):
@@ -151,23 +151,23 @@ def actualizar():
                     H=0
                     D=D+1
                     palabra.set(f"{D}:{H}:{M}:{S}")
-                    etiqueta4.after(1000,actualizar)
+                    etiqueta4.after(500,actualizar)
                   else:
                     S=0
                     M=0
                     H=H+1
                     palabra.set(f"{D}:{H}:{M}:{S}")
-                    etiqueta4.after(1000,actualizar)
+                    etiqueta4.after(500,actualizar)
                  
                else:
                  M=M+1
                  S=0
                  palabra.set(f"{D}:{H}:{M}:{S}")
-                 etiqueta4.after(1000,actualizar)
+                 etiqueta4.after(500,actualizar)
 
           else:
            palabra.set(f"{D}:{H}:{M}:{S}")
-           etiqueta4.after(1000,actualizar)
+           etiqueta4.after(500,actualizar)
      #Rparo
      elif(Reloj==0):
           palabra.set(f"{D}:{H}:{M}:{S}")
@@ -176,7 +176,7 @@ def actualizar():
      elif(Reloj==2):
            cuenta2=cuenta2+1
            palabra.set(f"Cont.. ({D}:{H}:{M}:{S})")
-           etiqueta4.after(1000,actualizar) 
+           etiqueta4.after(500,actualizar) 
      #Rborrar      
      elif(Reloj==3):
            cuenta2=0
