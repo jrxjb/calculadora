@@ -1,5 +1,18 @@
 from tkinter import * 
 import time
+import os
+import sys
+"""
+if hasattr(sys, '_MEIPASS'):
+    icon_path = os.path.join(sys._MEIPASS, 'cat.ico')
+else:
+    icon_path = 'cat.ico'
+"""
+current_dir = os.path.dirname(os.path.abspath(__file__))
+
+# Construir la ruta completa al archivo de imagen
+icon_path = os.path.join(current_dir, 'cat.ico')
+
 
 global cadena
 cadena=""
@@ -33,7 +46,6 @@ def sumar():
             valorDeA.config(bg="red") 
             cadena=""
             cadena2=""
-        #    mostrarAlerta()
 def restar():
    global cadena
    global cadena2
@@ -329,7 +341,7 @@ labelEspacio.grid(row=4)
 #############
 actualizar()
 
-root.iconbitmap("cat.ico") #debe estar en la misma carpeta
+root.iconbitmap(icon_path) #debe estar en la misma carpeta
 #reloj=Label(root,textvariable=palabra)
 #########################################################
 
